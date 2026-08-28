@@ -1,0 +1,8 @@
+| Сценарий | Команда | Ожидаемый результат | Фактический результат | Код завершения | Статус |
+| :--- | :--- | :--- | :--- | :---: | :---: |
+| **Корректный JSON** | `python3 src/main.py --input datasets/requests.json --output src/result.json` | Результат совпадает с `datasets/expected-results.json` по `id` | Файл `src/result.json` создан, категории и приоритеты полностью совпали с эталоном | `0` | `PASS` |
+| **Корректный CSV** | `python3 src/main.py --input datasets/requests.csv --output src/result.json` | Обработаны все записи из CSV, результат совпадает с эталоном | Файл `src/result.json` создан, данные из CSV успешно обработаны и совпали с эталоном | `0` | `PASS` |
+| **Несуществующий файл** | `python3 src/main.py --input /tmp/not-exist.json --output src/result.json` | Понятное сообщение об ошибке без traceback, ненулевой код завершения | Выведено сообщение: `Ошибка: указанный файл не найден`, traceback отсутствует | `1` | `PASS` |
+| **Повреждённый JSON** | `python3 src/main.py --input datasets/broken.json --output src/result.json` | Понятное сообщение о сломанном JSON без traceback, ненулевой код | Выведено сообщение: `Ошибка: поврежденный JSON файл`, traceback отсутствует | `1` | `PASS` |
+| **Пропущенные поля** | `python3 src/main.py --input datasets/missing-field.json --output src/result.json` | Понятное сообщение об ошибке валидации без traceback, ненулевой код | Выведено сообщение об ошибке валидации обязательного поля, traceback отсутствует | `1` | `PASS` |
+| **Справка `--help`** | `python3 src/main.py --help` | Вывод описания аргументов `--input` и `--output`, успешное завершение | В консоль выведена справка по использованию аргументов программы | `0` | `PASS` |
